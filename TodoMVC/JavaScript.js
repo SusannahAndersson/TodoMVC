@@ -1,5 +1,6 @@
 ﻿let template;
 let unfinishedTasks = 0;
+let finishedTasks = 0;
 
 start();
 
@@ -8,10 +9,76 @@ function start(){
     setupInputBox();
     setupToggleAll();
     setupClearCompleted();
+    setupShowAllButton();
+    setupShowActiveButton();
+    setupCompletedButton();
+}
+
+function setupShowAllButton() {
+    let button = document.querySelector('#all');
+    button.onclick = () => {
+        setItemsToShow("all");
+    };
+}
+
+function setupShowActiveButton() {
+    let button = document.querySelector('#active');
+    button.onclick = () => {
+        setItemsToShow("active");
+    };
+}
+
+function setupCompletedButton() {
+    let button = document.querySelector('#completed');
+    button.onclick = () => {
+        setItemsToShow("completed");
+    };
+}
+
+function setItemsToShow(input) {
+    let hidden = "hidden";
+    let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+    for (const li of liItems) {
+        if (input === "all") {
+            li.classList.remove(hidden);
+        }
+        else if (input === "active") {
+            if (!li.classList.contains("completed")) {
+                li.classList.remove(hidden);
+            }
+            else {
+                li.classList.add(hidden);
+            }
+        }
+        else if (input == "completed") {
+            if (li.classList.contains("completed")) {
+                li.classList.remove(hidden);
+            }
+            else {
+                li.classList.add(hidden);
+            }
+        }
+    }
 }
 
 function setupClearCompleted() {
-    
+    let button = document.querySelector('#clear-completed');
+    button.onclick = () => {
+        removeAllCompletedItems();
+        updateRemainingTasks();
+        document.querySelector('#toggle-all').checked = false;
+    };
+}
+
+function removeAllCompletedItems() {
+    let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+    for (const li of liItems) {
+        let checkBox = li.querySelector('#toggle');
+        if (checkBox.checked) {
+            finishedTasks--;
+            li.remove();
+        }
+    }
 }
 
 function setupTemplate(){
@@ -24,13 +91,20 @@ function addTodoItem(text) {
     
     let label = li.querySelector('#todo-text');
     label.textContent = text;
+    let doneToggle = li.querySelector('#toggle');
     
     let removeButton = li.querySelector('#remove-button');
     removeButton.onclick = () => {
+        if (doneToggle.checked) {
+            finishedTasks--;
+        }
+        else {
+            unfinishedTasks--;
+        }
         li.remove();
+        updateRemainingTasks();
     };
     
-    let doneToggle = li.querySelector('#toggle');
     doneToggle.onclick = () => {
         toggleDone(li, doneToggle.checked);
         updateRemainingTasks();
@@ -71,10 +145,12 @@ function setupInputBox(){
 function toggleDone(li, isChecked){
     if (isChecked && !li.classList.contains("completed")) {
         li.classList.add("completed");
+        finishedTasks++;
         unfinishedTasks--;
     }
     else if (!isChecked && li.classList.contains("completed")) {
         li.classList.remove("completed");
+        finishedTasks--;
         unfinishedTasks++;
     }
 }
@@ -82,6 +158,15 @@ function toggleDone(li, isChecked){
 function updateRemainingTasks() {
     let span = document.querySelector('#unfinished-tasks');
     span.textContent = unfinishedTasks;
+    let removeAllCompletedItemsButton = document.querySelector('#clear-completed');
+    
+    // toggle visiblity of remove all button
+    if (finishedTasks > 0) {
+        removeAllCompletedItemsButton.style.display = 'inline';
+    }
+    else {
+        removeAllCompletedItemsButton.style.display = 'none';
+    }
 }
 
 /*
@@ -91,8 +176,8 @@ function updateRemainingTasks() {
     // *   Markera anteckningar som färdiga.
     // *   Se hur många ofärdiga anteckningar som återstår ("X items left").
     // *   Markera alla anteckningar som färdiga/ofärdiga (nedåtpilen till vänster om textfältet).
-    *   Ta bort alla färdiga anteckningar ("Clear completed").
-    *   Visa upp antingen alla anteckningar ("All"), alla ofärdiga anteckningar ("Active") eller alla färdiga anteckningar ("Completed").
+    // *   Ta bort alla färdiga anteckningar ("Clear completed").
+    // *   Visa upp antingen alla anteckningar ("All"), alla ofärdiga anteckningar ("Active") eller alla färdiga anteckningar ("Completed").
 
 Ej:
     *URL-hantering (att knapparna "All", "Active" och "Completed" ändrar på URL:en).
