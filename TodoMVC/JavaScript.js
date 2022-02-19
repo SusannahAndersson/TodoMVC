@@ -1,4 +1,12 @@
-﻿
+﻿start();
+
+function start(){
+
+}
+
+function addTodoItem(text) {
+    let li 
+}
 
 /*
  Funktioner:
