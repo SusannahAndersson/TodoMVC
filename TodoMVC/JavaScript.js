@@ -14,11 +14,20 @@ function setupTemplate(){
 
 function addTodoItem(text) {
     let li = template.content.firstElementChild.cloneNode(true);
-    li.querySelector('#todo-text').textContent = text;
+    
+    let label = li.querySelector('#todo-text');
+    label.textContent = text;
+    
     let removeButton = li.querySelector('#remove-button');
     removeButton.onclick = () => {
         li.remove();
     };
+    
+    let doneToggle = li.querySelector('#toggle');
+    doneToggle.onclick = () => {
+        toggleDone(label, doneToggle.checked);
+    };
+    
     let ul = document.querySelector('#todo-list');
     ul.append(li);
 }
@@ -32,10 +41,19 @@ function setupInputBox(){
     };
 }
 
+function toggleDone(label, isChecked){
+    if (isChecked) {
+        label.style.color = "black";
+    }
+    else {
+        label.style.color = "";
+    }
+}
+
 /*
  Funktioner:
-    *   Lägga till anteckningar.
-    *   Ta bort anteckningar.
+    // *   Lägga till anteckningar.
+    // *   Ta bort anteckningar.
     *   Markera anteckningar som färdiga.
     *   Se hur många ofärdiga anteckningar som återstår ("X items left").
     *   Markera alla anteckningar som färdiga/ofärdiga (nedåtpilen till vänster om textfältet).
