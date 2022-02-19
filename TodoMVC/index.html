@@ -14,6 +14,7 @@
         <h1>todos</h1>
     </header>
     <main>
+        <input type="checkbox" id="toggle-all"></input>
         <form class="todo-bar">
             <input type="text" id="input-bar" placeholder="What needs to be done?">
         </form>
@@ -30,9 +31,11 @@
         </ul>
 
         <div id="filter-button">
+            <p><span id="unfinished-tasks">0</span> items left</p>
             <button type="button" id="all">All</button>
             <button type="button" id="active">Active</button>
             <button type="button" id="completed">Completed</button>
+            <button type="button" id="clear-completed">Clear Completed</button>
         </div>
 
     </main>
