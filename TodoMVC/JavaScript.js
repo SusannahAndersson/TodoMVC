@@ -25,7 +25,7 @@ function addTodoItem(text) {
     
     let doneToggle = li.querySelector('#toggle');
     doneToggle.onclick = () => {
-        toggleDone(label, doneToggle.checked);
+        toggleDone(li, doneToggle.checked);
     };
     
     let ul = document.querySelector('#todo-list');
@@ -41,12 +41,12 @@ function setupInputBox(){
     };
 }
 
-function toggleDone(label, isChecked){
+function toggleDone(li, isChecked){
     if (isChecked) {
-        label.style.color = "black";
+        li.classList.add("completed");
     }
     else {
-        label.style.color = "";
+        li.classList.remove("completed");
     }
 }
 
@@ -54,7 +54,7 @@ function toggleDone(label, isChecked){
  Funktioner:
     // *   Lägga till anteckningar.
     // *   Ta bort anteckningar.
-    *   Markera anteckningar som färdiga.
+    // *   Markera anteckningar som färdiga.
     *   Se hur många ofärdiga anteckningar som återstår ("X items left").
     *   Markera alla anteckningar som färdiga/ofärdiga (nedåtpilen till vänster om textfältet).
     *   Ta bort alla färdiga anteckningar ("Clear completed").
