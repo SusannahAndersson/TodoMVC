@@ -14,6 +14,38 @@ function start(){
     setupCompletedButton();
 }
 
+function setupTemplate(){
+    template = document.querySelector('#todo-template');
+    template.remove();
+}
+
+function setupInputBox(){
+    let form = document.querySelector('.todo-bar');
+    let inputText = form.querySelector('#input-bar');
+    form.onsubmit = event => {
+        event.preventDefault();
+        addTodoItem(inputText.value);
+        updateTaskCount();
+    };
+}
+
+function setupToggleAll() {
+    let checkBox = document.querySelector('#toggle-all');
+    checkBox.onclick = () => {
+        toggleAll(checkBox.checked);
+        updateTaskCount();
+    };
+}
+
+function setupClearCompleted() {
+    let button = document.querySelector('#clear-completed');
+    button.onclick = () => {
+        removeAllCompletedItems();
+        updateTaskCount();
+        document.querySelector('#toggle-all').checked = false;
+    };
+}
+
 function setupShowAllButton() {
     let button = document.querySelector('#all');
     button.onclick = () => {
@@ -61,15 +93,6 @@ function setItemsToShow(input) {
     }
 }
 
-function setupClearCompleted() {
-    let button = document.querySelector('#clear-completed');
-    button.onclick = () => {
-        removeAllCompletedItems();
-        updateRemainingTasks();
-        document.querySelector('#toggle-all').checked = false;
-    };
-}
-
 function removeAllCompletedItems() {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
     for (const li of liItems) {
@@ -79,11 +102,6 @@ function removeAllCompletedItems() {
             li.remove();
         }
     }
-}
-
-function setupTemplate(){
-    template = document.querySelector('#todo-template');
-    template.remove();
 }
 
 function addTodoItem(text) {
@@ -102,12 +120,12 @@ function addTodoItem(text) {
             unfinishedTasks--;
         }
         li.remove();
-        updateRemainingTasks();
+        updateTaskCount();
     };
     
     doneToggle.onclick = () => {
         toggleDone(li, doneToggle.checked);
-        updateRemainingTasks();
+        updateTaskCount();
     };
     
     let ul = document.querySelector('#todo-list');
@@ -115,47 +133,29 @@ function addTodoItem(text) {
     unfinishedTasks++;
 }
 
-function setupToggleAll() {
-    let checkBox = document.querySelector('#toggle-all');
-    checkBox.onclick = () => {
-        toggleAll(checkBox.checked);
-        updateRemainingTasks();
-    };
-}
-
 function toggleAll(isChecked) {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
     
     for (const li of liItems) {
-        toggleDone(li, isChecked);
         li.querySelector('#toggle').checked = isChecked;
+        toggleDone(li, isChecked);
     }
 }
 
-function setupInputBox(){
-    let form = document.querySelector('.todo-bar');
-    let inputText = form.querySelector('#input-bar');
-    form.onsubmit = event => {
-        event.preventDefault();
-        addTodoItem(inputText.value);
-        updateRemainingTasks();
-    };
-}
-
 function toggleDone(li, isChecked){
-    if (isChecked && !li.classList.contains("completed")) {
+    if (isChecked) {
         li.classList.add("completed");
         finishedTasks++;
         unfinishedTasks--;
     }
-    else if (!isChecked && li.classList.contains("completed")) {
+    else if (!isChecked) {
         li.classList.remove("completed");
         finishedTasks--;
         unfinishedTasks++;
     }
 }
 
-function updateRemainingTasks() {
+function updateTaskCount() {
     let span = document.querySelector('#unfinished-tasks');
     span.textContent = unfinishedTasks;
     let removeAllCompletedItemsButton = document.querySelector('#clear-completed');
@@ -168,6 +168,9 @@ function updateRemainingTasks() {
         removeAllCompletedItemsButton.style.display = 'none';
     }
 }
+
+// bugg vid toggle all
+// toggle på remove completed button
 
 /*
  Funktioner:
