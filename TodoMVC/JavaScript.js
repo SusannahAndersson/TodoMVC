@@ -105,6 +105,9 @@ function removeAllCompletedItems() {
 }
 
 function addTodoItem(text) {
+    if (!text) {
+        return;
+    }
     let li = template.content.firstElementChild.cloneNode(true);
     
     let label = li.querySelector('#todo-text');
@@ -171,9 +174,6 @@ function updateTaskCount() {
         removeAllCompletedItemsButton.classList.add("hidden");
     }
 }
-
-// bugg vid toggle all
-// toggle på remove completed button
 
 /*
  Funktioner:
