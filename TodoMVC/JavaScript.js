@@ -1,10 +1,15 @@
-﻿let template;
+﻿/* todo
+ *sätta filter knappar till aktiv vid onclick
+ *dölj filter knappar när listan är tom
+ */
+
+let template;
 let unfinishedTasks = 0;
 let finishedTasks = 0;
 
 start();
 
-function start(){
+function start() {
     setupTemplate();
     setupInputBox();
     setupToggleAll();
@@ -14,12 +19,12 @@ function start(){
     setupCompletedButton();
 }
 
-function setupTemplate(){
+function setupTemplate() {
     template = document.querySelector('#todo-template');
     template.remove();
 }
 
-function setupInputBox(){
+function setupInputBox() {
     let form = document.querySelector('.todo-bar');
     let inputText = form.querySelector('#input-bar');
     form.onsubmit = event => {
@@ -109,11 +114,11 @@ function addTodoItem(text) {
         return;
     }
     let li = template.content.firstElementChild.cloneNode(true);
-    
+
     let label = li.querySelector('.todo-text');
     label.textContent = text;
     let doneToggle = li.querySelector('.toggle');
-    
+
     let removeButton = li.querySelector('.remove-button');
     removeButton.onclick = () => {
         if (doneToggle.checked) {
@@ -125,12 +130,12 @@ function addTodoItem(text) {
         li.remove();
         updateTaskCount();
     };
-    
+
     doneToggle.onclick = () => {
         toggleDone(li, doneToggle.checked);
         updateTaskCount();
     };
-    
+
     let ul = document.querySelector('#todo-list');
     ul.append(li);
     unfinishedTasks++;
@@ -138,7 +143,7 @@ function addTodoItem(text) {
 
 function toggleAll(isChecked) {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
-    
+
     for (const li of liItems) {
         let toggle = li.querySelector('.toggle');
         if (toggle.checked != isChecked) {
@@ -148,7 +153,7 @@ function toggleAll(isChecked) {
     }
 }
 
-function toggleDone(li, isChecked){
+function toggleDone(li, isChecked) {
     if (isChecked) {
         li.classList.add("completed");
         finishedTasks++;
@@ -165,7 +170,7 @@ function updateTaskCount() {
     let span = document.querySelector('#unfinished-tasks');
     span.textContent = unfinishedTasks;
     let removeAllCompletedItemsButton = document.querySelector('#clear-completed');
-    
+
     // toggle visiblity of remove all button
     if (finishedTasks > 0) {
         removeAllCompletedItemsButton.classList.remove("hidden");

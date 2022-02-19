@@ -14,12 +14,12 @@
         <h1>todos</h1>
     </header>
     <main>
-        <input type="checkbox" id="toggle-all"></input>
-        <form class="todo-bar">
-            <input type="text" id="input-bar" placeholder="What needs to be done?">
-        </form>
-
-
+        <div id="todo-top">
+            <input type="checkbox" id="toggle-all">
+            <form class="todo-bar">
+                <input type="text" id="input-bar" placeholder="What needs to be done?">
+            </form>
+        </div>
         <ul id="todo-list">
             <template id="todo-template">
                 <li>
@@ -29,15 +29,15 @@
                 </li>
             </template>
         </ul>
-
-        <div id="filter-button">
+        <div id="status-field">
             <p><span id="unfinished-tasks">0</span> items left</p>
-            <button type="button" id="all">All</button>
-            <button type="button" id="active">Active</button>
-            <button type="button" id="completed">Completed</button>
+            <ul id="filter-button">
+                <li><button type="button" id="all">All</button></li>
+                <li><button type="button" id="active">Active</button></li>
+                <li><button type="button" id="completed">Completed</button></li>
+            </ul>
             <button type="button" id="clear-completed" class="hidden">Clear Completed</button>
         </div>
-
     </main>
     <footer>
         <div class="info">
