@@ -137,8 +137,11 @@ function toggleAll(isChecked) {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
     
     for (const li of liItems) {
-        li.querySelector('#toggle').checked = isChecked;
-        toggleDone(li, isChecked);
+        let toggle = li.querySelector('#toggle');
+        if (toggle.checked != isChecked) {
+            toggle.checked = isChecked;
+            toggleDone(li, isChecked);
+        }
     }
 }
 
@@ -162,10 +165,10 @@ function updateTaskCount() {
     
     // toggle visiblity of remove all button
     if (finishedTasks > 0) {
-        removeAllCompletedItemsButton.style.display = 'inline';
+        removeAllCompletedItemsButton.classList.remove("hidden");
     }
     else {
-        removeAllCompletedItemsButton.style.display = 'none';
+        removeAllCompletedItemsButton.classList.add("hidden");
     }
 }
 

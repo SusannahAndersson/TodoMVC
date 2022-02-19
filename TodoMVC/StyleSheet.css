@@ -6,6 +6,7 @@
     Change styling on clear completed compared to other buttons
     remove dot for list items
     style li objects with class hidden
+    style 
  */
 
 * {
@@ -48,3 +49,9 @@ input[type="text"] {
 /*
         background: #f5f5f5;
 */
+
+input[type="checkbox"] {
+    width: 40px;                         /* Set width */
+    height: 40px;                        /* Set height */
+    clip-path: circle(46% at 50% 50%);   /* Set the clip path of circle*/
+  }
