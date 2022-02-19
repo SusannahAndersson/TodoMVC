@@ -1,0 +1,40 @@
+﻿* {
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #bfbfbf;
+    font: 14px 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: rgba(175, 47, 47, 0.15);
+    font-size: 100px;
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+.todobar {
+    background: rgba(0, 0, 0, 0.003);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 50%);
+}
+
+input[type="text"] {
+    height: 50px;
+    width: 470px;
+    border: none;
+    font-size: 24px;
+    font-style: oblique;
+    text-align: center;
+}
+
+.info {
+    margin-top: 50px;
+    color: #bfbfbf;
+    font: 10px Helvetica Neue, cursive;
+}
+
+/*
+        background: #f5f5f5;
+*/
