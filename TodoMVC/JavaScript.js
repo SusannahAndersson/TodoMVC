@@ -96,7 +96,7 @@ function setItemsToShow(input) {
 function removeAllCompletedItems() {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
     for (const li of liItems) {
-        let checkBox = li.querySelector('#toggle');
+        let checkBox = li.querySelector('.toggle');
         if (checkBox.checked) {
             finishedTasks--;
             li.remove();
@@ -110,11 +110,11 @@ function addTodoItem(text) {
     }
     let li = template.content.firstElementChild.cloneNode(true);
     
-    let label = li.querySelector('#todo-text');
+    let label = li.querySelector('.todo-text');
     label.textContent = text;
-    let doneToggle = li.querySelector('#toggle');
+    let doneToggle = li.querySelector('.toggle');
     
-    let removeButton = li.querySelector('#remove-button');
+    let removeButton = li.querySelector('.remove-button');
     removeButton.onclick = () => {
         if (doneToggle.checked) {
             finishedTasks--;
@@ -140,7 +140,7 @@ function toggleAll(isChecked) {
     let liItems = document.querySelector('#todo-list').querySelectorAll('li');
     
     for (const li of liItems) {
-        let toggle = li.querySelector('#toggle');
+        let toggle = li.querySelector('.toggle');
         if (toggle.checked != isChecked) {
             toggle.checked = isChecked;
             toggleDone(li, isChecked);
