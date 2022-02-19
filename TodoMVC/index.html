@@ -14,22 +14,22 @@
         <h1>todos</h1>
     </header>
     <main>
-        <form class="todobar">
-            <input type="text" id="inputbar" placeholder="What needs to be done?">
+        <form class="todo-bar">
+            <input type="text" id="input-bar" placeholder="What needs to be done?">
         </form>
 
 
-        <ul id="todolist">
-            <template>
+        <ul id="todo-list">
+            <template id="todo-template">
                 <li>
                     <button id="done-toggle"></button>
-                    <p>Text</p>
+                    <p id="todo-text">Text</p>
                     <button id="remove-button">❌</button>
                 </li>
             </template>
         </ul>
 
-        <div id="filterbutton">
+        <div id="filter-button">
             <button type="button" id="all">All</button>
             <button type="button" id="active">Active</button>
             <button type="button" id="completed">Completed</button>

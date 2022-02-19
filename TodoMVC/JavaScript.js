@@ -1,11 +1,35 @@
-﻿start();
+﻿let template;
+
+start();
 
 function start(){
+    setupTemplate();
+    setupInputBox();
+}
 
+function setupTemplate(){
+    template = document.querySelector('#todo-template');
+    template.remove();
 }
 
 function addTodoItem(text) {
-    let li 
+    let li = template.content.firstElementChild.cloneNode(true);
+    li.querySelector('#todo-text').textContent = text;
+    let removeButton = li.querySelector('#remove-button');
+    removeButton.onclick = () => {
+        li.remove();
+    };
+    let ul = document.querySelector('#todo-list');
+    ul.append(li);
+}
+
+function setupInputBox(){
+    let form = document.querySelector('.todo-bar');
+    let inputText = form.querySelector('#input-bar');
+    form.onsubmit = event => {
+        event.preventDefault();
+        addTodoItem(inputText.value);
+    };
 }
 
 /*
