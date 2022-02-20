@@ -1,4 +1,9 @@
-﻿body {
+﻿/*#region main*/
+.hidden {
+    display: none !important;
+}
+
+body {
     background-color: #f5f5f5;
     color: #4d4d4d;
     font: 14px 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
@@ -14,15 +19,20 @@ h1 {
 
 main {
     background: white;
-    margin: 0px 0 40px 0;
+    margin: 0 0 40px 0;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 25px 50px 0 rgba(0,0,0,0.1);
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 :focus {
     outline: 0;
 }
+/*#endregion main */
 
+/*#region todo-bar*/
 .todobar {
     background: rgba(0, 0, 0, 0.003);
     text-shadow: 0 1px 0 rgb(255 255 255 / 50%);
@@ -37,7 +47,7 @@ main {
 
 #input-bar {
     height: 50px;
-    width: 470px;
+    width: auto; /*changed, nice result*/
     border: none;
     font-size: 24px;
     font-style: oblique;
@@ -48,13 +58,9 @@ main {
 #input-bar::placeholder{
     color: #d9d9d9;
 }
+/*#endregion todo-bar*/
 
-.info {
-    margin-top: 50px;
-    color: #bfbfbf;
-    font: 10px Helvetica Neue, cursive;
-}
-
+/*#region todo-list*/
 #todo-list {
     margin: 0;
     padding: 0;
@@ -64,8 +70,10 @@ main {
 
 #todo-list li {
     position: relative;
-    display: grid;
-    grid-template-columns: auto 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    /* grid-template-columns: auto 100px; */
     font-size: 24px;
     border-bottom: 1px solid #ededed;
 }
@@ -81,9 +89,6 @@ main {
         border: none;
         -webkit-appearance: none;
         appearance: none;
-    }
-
-    #todo-list li .toggle {
         opacity: 0;
     }
 
@@ -105,7 +110,7 @@ main {
     #todo-list li label {
         word-break: break-all;
         padding: 15px 15px 15px 60px;
-        display: block;
+        /* display: block; */
         line-height: 1.2;
     }
 
@@ -117,9 +122,11 @@ main {
         border: 0;
         background: none;
     }
+/*#endregion todo-list*/
 
+/*#region status-field*/
 #status-field {
-    display: grid;
+    display: subgrid;
     grid-template-columns: 100px auto 120px;
     justify-items: center;
 }
@@ -160,9 +167,13 @@ main {
                 border: solid rgba(175, 47, 47, 0.2);
             }
 
+/*#endregion status-field*/
 
-.hidden {
-    display: none !important;
+/*#region footer*/
+.info {
+    margin-top: 50px;
+    color: #bfbfbf;
+    font: 10px Helvetica Neue, cursive;
 }
 
 a {
@@ -184,3 +195,4 @@ a {
     a:active {
         text-decoration: underline;
     }
+/*#endregion footer*/
