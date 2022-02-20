@@ -114,16 +114,14 @@ function removeAllCompletedItems() {
 }
 
 function addTodoItem(text) {
-    if (!text) {
-        return;
-    }
-    let li = template.content.firstElementChild.cloneNode(true);
+    if (!text) { return; }
 
+    let li = template.content.firstElementChild.cloneNode(true);
     
     let label = li.querySelector('.todo-text');
     label.textContent = text;
-    let doneToggle = li.querySelector('.toggle');
 
+    let doneToggle = li.querySelector('.toggle');
     let removeButton = li.querySelector('.remove-button');
     removeButton.onclick = () => {
         if (doneToggle.checked) {
@@ -135,7 +133,7 @@ function addTodoItem(text) {
         li.remove();
         updateTaskCount();
     };
-    
+
     li.addEventListener("mouseenter", function (event) {
         event.target.querySelector(".remove-button").classList.remove("hidden");
     });
@@ -152,7 +150,7 @@ function addTodoItem(text) {
     ul.append(li);
     unfinishedTasks++;
 
-    let toggleAllCheckbox = document.querySelector("#toggle-all").checked = false;
+    document.querySelector("#toggle-all").checked = false;
 }
 
 function toggleAll(isChecked) {
