@@ -134,10 +134,15 @@ input[type=checkbox]:checked + label {
     justify-items: center;
 }
 
-#status-field #clear-completed {
-    border: 0;
-    background: none;
-}
+    #status-field #clear-completed {
+        border: 0;
+        background: none;
+    }
+
+        #status-field #clear-completed:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
 
 #filter-button {
     list-style: none;
@@ -153,6 +158,7 @@ input[type=checkbox]:checked + label {
             border: solid transparent;
             border-radius: 3px;
             color: inherit;
+            cursor: pointer;
         }
 
             #filter-button li button:hover {
