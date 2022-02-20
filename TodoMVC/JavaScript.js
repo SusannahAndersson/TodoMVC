@@ -144,6 +144,8 @@ function addTodoItem(text) {
     let ul = document.querySelector('#todo-list');
     ul.append(li);
     unfinishedTasks++;
+
+    let toggleAllCheckbox = document.querySelector("#toggle-all").checked = false;
 }
 
 function toggleAll(isChecked) {
