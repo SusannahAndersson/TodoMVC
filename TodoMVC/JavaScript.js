@@ -11,6 +11,7 @@ start();
 
 function start() {
     setupTemplate();
+    setupCache();
     setupInputBox();
     setupToggleAll();
     setupClearCompleted();
@@ -22,6 +23,10 @@ function start() {
 function setupTemplate() {
     template = document.querySelector('#todo-template');
     template.remove();
+}
+
+function setupCache() {
+    
 }
 
 function setupInputBox() {
@@ -166,17 +171,26 @@ function toggleDone(li, isChecked) {
     }
 }
 
-function updateTaskCount() {
-    let span = document.querySelector('#unfinished-tasks');
-    span.textContent = unfinishedTasks;
-    let removeAllCompletedItemsButton = document.querySelector('#clear-completed');
 
+function updateTaskCount() {
+
+    let statusField = document.querySelector("#status-field");
+    let removeAllCompletedItemsButton = statusField.querySelector("#clear-completed");
+    let unfinishedTaskSpan = statusField.querySelector("#unfinished-tasks");
     // toggle visiblity of remove all button
     if (finishedTasks > 0) {
         removeAllCompletedItemsButton.classList.remove("hidden");
     }
     else {
         removeAllCompletedItemsButton.classList.add("hidden");
+    }
+
+    if (finishedTasks === 0 && unfinishedTasks === 0) {
+        statusField.classList.add("hidden");
+    }
+    else {
+        statusField.classList.remove("hidden");
+        unfinishedTaskSpan.textContent = unfinishedTasks;
     }
 }
 
