@@ -119,6 +119,13 @@ input[type=checkbox]:checked + label {
         transition: color 0.4s;
     }
 
+    #todo-list li button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+    }
+
 #status-field {
     display: grid;
     grid-template-columns: 100px auto 120px;

@@ -6,7 +6,6 @@ start();
 
 function start() {
     setupTemplate();
-    setupCache();
     setupInputBox();
     setupToggleAll();
     setupClearCompleted();
@@ -18,10 +17,6 @@ function start() {
 function setupTemplate() {
     template = document.querySelector('#todo-template');
     template.remove();
-}
-
-function setupCache() {
-    
 }
 
 function setupInputBox() {
@@ -124,6 +119,7 @@ function addTodoItem(text) {
     }
     let li = template.content.firstElementChild.cloneNode(true);
 
+    
     let label = li.querySelector('.todo-text');
     label.textContent = text;
     let doneToggle = li.querySelector('.toggle');
@@ -139,6 +135,13 @@ function addTodoItem(text) {
         li.remove();
         updateTaskCount();
     };
+    
+    li.addEventListener("mouseenter", function (event) {
+        event.target.querySelector(".remove-button").classList.remove("hidden");
+    });
+    li.addEventListener("mouseleave", function (event) {
+        event.target.querySelector(".remove-button").classList.add("hidden");
+    });
 
     doneToggle.onclick = () => {
         toggleDone(li, doneToggle.checked);
