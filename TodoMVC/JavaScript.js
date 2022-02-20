@@ -26,6 +26,7 @@ function setupInputBox() {
         event.preventDefault();
         addTodoItem(inputText.value);
         updateTaskCount();
+        inputText.value = "";
     };
 }
 
