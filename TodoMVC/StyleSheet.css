@@ -134,6 +134,11 @@ input[type=checkbox]:checked + label {
     justify-items: center;
 }
 
+#status-field #clear-completed {
+    border: 0;
+    background: none;
+}
+
 #filter-button {
     list-style: none;
     display: flex;
@@ -144,21 +149,20 @@ input[type=checkbox]:checked + label {
     }
 
         #filter-button li button {
-            background-color: white;
-            border: solid white;
+            background: none;
+            border: solid transparent;
             border-radius: 3px;
             color: inherit;
         }
 
             #filter-button li button:hover {
-                background-color: white;
                 border: solid rgba(175, 47, 47, 0.2);
             }
 
             #filter-button li button.active {
-                background-color: white;
                 border: solid rgba(175, 47, 47, 0.2);
             }
+
 
 .hidden {
     display: none !important;
