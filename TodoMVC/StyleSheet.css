@@ -59,14 +59,14 @@ input[type="text"] {
     padding: 16px;
 }
 
+#input-bar::placeholder{
+    color: #d9d9d9;
+}
+
 .info {
     margin-top: 50px;
     color: #bfbfbf;
     font: 10px Helvetica Neue, cursive;
-}
-
-input[type=checkbox]:checked + label {
-    text-decoration: line-through;
 }
 
 #todo-list {
@@ -107,6 +107,11 @@ input[type=checkbox]:checked + label {
             background-position: center left;
         }
 
+        #todo-list li.completed label{
+            color: #d9d9d9;
+            text-decoration: line-through;
+        }
+
         #todo-list li .toggle:checked + label {
             background-image: url(images/circle_tick.svg);
         }
@@ -116,7 +121,6 @@ input[type=checkbox]:checked + label {
         padding: 15px 15px 15px 60px;
         display: block;
         line-height: 1.2;
-        transition: color 0.4s;
     }
 
     #todo-list li button {
@@ -137,6 +141,7 @@ input[type=checkbox]:checked + label {
     #status-field #clear-completed {
         border: 0;
         background: none;
+        color: inherit;
     }
 
         #status-field #clear-completed:hover {
