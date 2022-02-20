@@ -146,6 +146,11 @@ input[type=checkbox]:checked + label {
                 border: solid rgba(175, 47, 47, 0.2);
             }
 
+            #filter-button li button.active {
+                background-color: white;
+                border: solid rgba(175, 47, 47, 0.2);
+            }
+
 .hidden {
     display: none !important;
 }

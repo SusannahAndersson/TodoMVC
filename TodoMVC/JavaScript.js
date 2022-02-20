@@ -1,6 +1,5 @@
 ﻿/* todo
  *sätta filter knappar till aktiv vid onclick
- *dölj filter knappar när listan är tom
  */
 
 let template;
@@ -60,6 +59,9 @@ function setupShowAllButton() {
     let button = document.querySelector('#all');
     button.onclick = () => {
         setItemsToShow("all");
+        button.classList.add("active");
+        document.querySelector('#active').classList.remove("active");
+        document.querySelector('#completed').classList.remove("active");
     };
 }
 
@@ -67,6 +69,9 @@ function setupShowActiveButton() {
     let button = document.querySelector('#active');
     button.onclick = () => {
         setItemsToShow("active");
+        button.classList.add("active");
+        document.querySelector('#all').classList.remove("active");
+        document.querySelector('#completed').classList.remove("active");
     };
 }
 
@@ -74,6 +79,9 @@ function setupCompletedButton() {
     let button = document.querySelector('#completed');
     button.onclick = () => {
         setItemsToShow("completed");
+        button.classList.add("active");
+        document.querySelector('#all').classList.remove("active");
+        document.querySelector('#active').classList.remove("active");
     };
 }
 
