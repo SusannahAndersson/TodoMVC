@@ -48,5 +48,32 @@ namespace Test.GUI
             Assert.AreEqual(itemName, text);
         }
 
+        [Test]
+        public void AddItem_MarkItemDone_AssertCount()
+        {
+            int expected1 = 1;
+            int expected2 = 0;
+
+            _browser.Navigate().GoToUrl(_url);
+            var searchbox = _browser.FindElement(By.Id("input-bar"));
+            searchbox.SendKeys("test 213");
+            searchbox.SendKeys(Keys.Enter);
+            _browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+
+            var itemCount = _browser.FindElement(By.Id("unfinished-tasks"));
+            int count1 = int.Parse(itemCount.Text);
+
+            var list = _browser.FindElement(By.Id("todo-list"));
+            list.FindElement(By.CssSelector("li .toggle")).Click();
+            _browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(500);
+
+            int count2 = int.Parse(itemCount.Text);
+
+            Assert.AreEqual(expected1, count1);
+            Assert.AreEqual(expected2, count2);
+        }
+
+        
+
     }
 }
