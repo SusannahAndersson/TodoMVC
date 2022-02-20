@@ -1,8 +1,4 @@
-﻿/* todo
- *sätta filter knappar till aktiv vid onclick
- */
-
-let template;
+﻿let template;
 let unfinishedTasks = 0;
 let finishedTasks = 0;
 
