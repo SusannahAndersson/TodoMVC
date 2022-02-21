@@ -1,3 +1,18 @@
+/*#region main*/
+.hidden {
+    display: none !important;
+}
+
+:focus {
+    outline: 0;
+}
+
+button {
+    background: transparent;
+    border: solid transparent;
+    border-radius: 3px;
+}
+
 body {
     display: grid;
     grid-template-areas: 
@@ -8,14 +23,21 @@ body {
     margin-left: auto;
     margin-right: auto;
 
-    background: grey;
+    background: #f5f5f5;
+    color: #4d4d4d;
+    font: 14px 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 }
 
 header {
     grid-area: header;
     justify-self: center;
+}
 
-    background: white;
+header h1{
+    color: rgba(175, 47, 47, 0.15);
+    font-size: 100px;
+    font-weight: 100;
+    margin-bottom: 0;
 }
 
 main {
@@ -27,27 +49,47 @@ main {
     "status";
 
     background: white;
+    margin: 0 0 40px 0;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 25px 50px 0 rgba(0,0,0,0.1);
 }
 
+/*#endregion main*/
+
+/*#region todo-bar*/
 main #todo-top{
     grid-area: search;
     display: grid;
     grid-template-columns: 50px auto;
+    border-bottom-style: solid;
+    border-color: lightgray;
+}
+
+main #todo-top .todo-bar{
+    background: rgba(0, 0, 0, 0.003);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 50%);
+    justify-self: stretch;
 }
 
 main #todo-top [type="checkbox"]{
     justify-self: center;
 }
 
-main #todo-top .todo-bar{
-    justify-self: stretch;
-}
-
 main #todo-top .todo-bar #input-bar{
     position: relative;
-    width: 98%;
+    width: auto;
+    height: 50px;
+    border: none;
+    font-size: 24px;
+    font-style: oblique;
+    text-align: left;
+    padding: 16px;
 }
+main #todo-top .todo-bar #input-bar::placeholder{
+    color: #d9d9d9;
+}
+/*#endregion todo-bar*/
 
+/*#region todo-list*/
 main #todo-list{
     grid-area: list;
     list-style: none;
@@ -56,17 +98,54 @@ main #todo-list{
 
 main #todo-list li{
     display: grid;
-    grid-template-columns: 50px auto 50px;
+    grid-template-columns: auto 50px;
+    font-size: 24px;
+    border-bottom: 1px solid #ededed;
 }
 
 main #todo-list li .toggle{
-    justify-self: center;
+    text-align: center;
+    width: 40px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 0;
 }
+
+main #todo-list li label {
+    word-break: break-all;
+    padding: 15px 15px 15px 60px;
+    line-height: 1.2;
+}
+
+    main #todo-list li .toggle + label {
+        background-image: url(images/circle.svg);
+        background-repeat: no-repeat;
+        background-position: center left;
+    }
+
+    main #todo-list li .toggle:checked + label {
+        background-image: url(images/circle_tick.svg);
+    }
+
+    main #todo-list li.completed label{
+        color: #d9d9d9;
+        text-decoration: line-through;
+    }
 
 main #todo-list li .remove-button{
     justify-self: center;
+    margin: 0;
+    padding: 0;
 }
+/*#endregion todo-list*/
 
+/*#region status-field*/
 main #status-field{
     grid-area: status;
     display: grid;
@@ -84,8 +163,19 @@ main #status-field #filter-button{
 }
 
 main #status-field #filter-button li {
-    padding: 5px;
+    padding: 2px;
     display: inline;
+}
+main #status-field #filter-button li button{
+    cursor: pointer;
+}
+
+main #status-field #filter-button li button:hover {
+    border: solid rgba(175, 47, 47, 0.1);
+}
+
+main #status-field #filter-button li button.active {
+    border: solid rgba(175, 47, 47, 0.15);
 }
 
 main #status-field #clear-completed{
@@ -93,7 +183,15 @@ main #status-field #clear-completed{
     align-self: center;
 }
 
+main #status-field #clear-completed:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+/*#endregion status-field*/
+
+/*#region footer*/
 footer {
     grid-area: footer;
     justify-self: center;
 }
+/*#endregion footer*/

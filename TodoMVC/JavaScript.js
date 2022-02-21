@@ -1,4 +1,6 @@
-﻿let template;
+﻿// filterbuttons when information is changed
+
+let template;
 let unfinishedTasks = 0;
 let finishedTasks = 0;
 
