@@ -1,0 +1,42 @@
+body {
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    grid-area: header;
+    justify-self: center;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-areas: 
+    "search"
+    "list"
+    "status";
+}
+
+main #todo-top{
+    grid-area: search;
+    display: grid;
+    grid-template-columns: 40px auto;
+}
+
+main #todo-list{
+    grid-area: list;
+}
+
+main #status-field{
+    grid-area: status;
+}
+
+footer {
+    grid-area: footer;
+}
