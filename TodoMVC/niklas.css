@@ -60,39 +60,42 @@ main #todo-top{
     grid-area: search;
     display: grid;
     grid-template-columns: 50px auto;
+    grid-template-areas: 
+    "checkbox searchbar";
     border-bottom-style: solid;
     border-color: lightgray;
+}
+
+main #todo-top .toggle-all{
+    opacity: 0;
+    height: 40px;
+    width: 40px;
+    grid-area: checkbox;
+    align-self: center;
+}
+
+main #todo-top label {
+    line-height: 1.2;
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+main #todo-top .toggle-all + label {
+    background-image: url(images/circle.svg);
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+main #todo-top .toggle-all:checked + label {
+    background-image: url(images/circle_tick.svg);
 }
 
 main #todo-top .todo-bar{
     background: rgba(0, 0, 0, 0.003);
     text-shadow: 0 1px 0 rgb(255 255 255 / 50%);
     justify-self: stretch;
+    grid-area: searchbar;
 }
-
-            main #todo-top .toggle-all{
-                text-align: center;
-                width: 40px;
-                height: auto;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                margin: auto 0;
-                border: none;
-                -webkit-appearance: none;
-                appearance: none;
-                opacity: 0;
-            }
-
-            main #todo-top .toggle-all + label {
-                background-image: url(images/circle.svg);
-                background-repeat: no-repeat;
-                background-position: center left;
-            }
-
-            main #todo-top .toggle-all:checked + label {
-                background-image: url(images/circle_tick.svg);
-            }
 
 main #todo-top .todo-bar #input-bar{
     position: relative;
@@ -118,29 +121,28 @@ main #todo-list{
 
 main #todo-list li{
     display: grid;
-    grid-template-columns: auto 50px;
+    grid-template-columns: 50px auto 50px;
+    grid-template-areas: 
+    "checkbox label delete";
     font-size: 24px;
     border-bottom: 1px solid #ededed;
 }
 
+
 main #todo-list li .toggle{
-    text-align: center;
-    width: 40px;
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
     opacity: 0;
+    height: 40px;
+    width: 40px;
+    grid-area: checkbox;
 }
+
 
 main #todo-list li label {
     word-break: break-all;
     padding: 15px 15px 15px 60px;
     line-height: 1.2;
+    grid-row: 1;
+    grid-column: span 3 / -1;
 }
 
     main #todo-list li .toggle + label {
@@ -162,6 +164,7 @@ main #todo-list li .remove-button{
     justify-self: center;
     margin: 0;
     padding: 0;
+    grid-area: delete;
 }
 /*#endregion todo-list*/
 
