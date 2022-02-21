@@ -1,8 +1,9 @@
-﻿// filterbuttons when information is changed
+﻿// toggle done marks last element always
 
 let template;
 let unfinishedTasks = 0;
 let finishedTasks = 0;
+let filterStatus = "all";
 
 start();
 
@@ -33,7 +34,7 @@ function setupInputBox() {
 }
 
 function setupToggleAll() {
-    let checkBox = document.querySelector('#toggle-all');
+    let checkBox = document.querySelector('.toggle-all');
     checkBox.onclick = () => {
         toggleAll(checkBox.checked);
         updateTaskCount();
@@ -45,14 +46,18 @@ function setupClearCompleted() {
     button.onclick = () => {
         removeAllCompletedItems();
         updateTaskCount();
-        document.querySelector('#toggle-all').checked = false;
+        document.querySelector('.toggle-all').checked = false;
     };
 }
 
 function setupShowAllButton() {
     let button = document.querySelector('#all');
     button.onclick = () => {
-        setItemsToShow("all");
+        filterStatus = "all";
+        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+        for (const li of liItems) {
+            setItemViewStatus(li);
+        }
         button.classList.add("active");
         document.querySelector('#active').classList.remove("active");
         document.querySelector('#completed').classList.remove("active");
@@ -62,7 +67,11 @@ function setupShowAllButton() {
 function setupShowActiveButton() {
     let button = document.querySelector('#active');
     button.onclick = () => {
-        setItemsToShow("active");
+        filterStatus = "active";
+        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+        for (const li of liItems) {
+            setItemViewStatus(li);
+        }
         button.classList.add("active");
         document.querySelector('#all').classList.remove("active");
         document.querySelector('#completed').classList.remove("active");
@@ -72,36 +81,42 @@ function setupShowActiveButton() {
 function setupCompletedButton() {
     let button = document.querySelector('#completed');
     button.onclick = () => {
-        setItemsToShow("completed");
+        filterStatus = "completed";
+        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+        for (const li of liItems) {
+            setItemViewStatus(li);
+        }
         button.classList.add("active");
         document.querySelector('#all').classList.remove("active");
         document.querySelector('#active').classList.remove("active");
     };
 }
 
-function setItemsToShow(input) {
+function setItemViewStatus(li) {
     let hidden = "hidden";
-    let liItems = document.querySelector('#todo-list').querySelectorAll('li');
-    for (const li of liItems) {
-        if (input === "all") {
+
+    switch (filterStatus) {
+        case "all":
             li.classList.remove(hidden);
-        }
-        else if (input === "active") {
+            break;
+        case "active":
             if (!li.classList.contains("completed")) {
                 li.classList.remove(hidden);
             }
             else {
                 li.classList.add(hidden);
             }
-        }
-        else if (input == "completed") {
+            break;
+        case "completed":
             if (li.classList.contains("completed")) {
                 li.classList.remove(hidden);
             }
             else {
                 li.classList.add(hidden);
             }
-        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -149,11 +164,14 @@ function addTodoItem(text) {
         updateTaskCount();
     };
 
+    setItemViewStatus(li);
+    
     let ul = document.querySelector('#todo-list');
     ul.append(li);
     unfinishedTasks++;
 
-    document.querySelector("#toggle-all").checked = false;
+
+    document.querySelector(".toggle-all").checked = false;
 }
 
 function toggleAll(isChecked) {
@@ -179,11 +197,13 @@ function toggleDone(li, isChecked) {
         finishedTasks--;
         unfinishedTasks++;
     }
+    setItemViewStatus(li);
 }
 
 
 function updateTaskCount() {
 
+    let todolist = document.querySelector("#todo-list");
     let statusField = document.querySelector("#status-field");
     let removeAllCompletedItemsButton = statusField.querySelector("#clear-completed");
     let unfinishedTaskSpan = statusField.querySelector("#unfinished-tasks");
@@ -197,9 +217,11 @@ function updateTaskCount() {
 
     if (finishedTasks === 0 && unfinishedTasks === 0) {
         statusField.classList.add("hidden");
+        todolist.classList.add("hidden");
     }
     else {
         statusField.classList.remove("hidden");
+        todolist.classList.remove("hidden");
         unfinishedTaskSpan.textContent = unfinishedTasks;
     }
 }

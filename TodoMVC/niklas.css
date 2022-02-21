@@ -70,9 +70,29 @@ main #todo-top .todo-bar{
     justify-self: stretch;
 }
 
-main #todo-top [type="checkbox"]{
-    justify-self: center;
-}
+            main #todo-top .toggle-all{
+                text-align: center;
+                width: 40px;
+                height: auto;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                border: none;
+                -webkit-appearance: none;
+                appearance: none;
+                opacity: 0;
+            }
+
+            main #todo-top .toggle-all + label {
+                background-image: url(images/circle.svg);
+                background-repeat: no-repeat;
+                background-position: center left;
+            }
+
+            main #todo-top .toggle-all:checked + label {
+                background-image: url(images/circle_tick.svg);
+            }
 
 main #todo-top .todo-bar #input-bar{
     position: relative;

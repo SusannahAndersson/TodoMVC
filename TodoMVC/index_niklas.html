@@ -15,12 +15,13 @@
     </header>
     <main>
         <div id="todo-top">
-            <input type="checkbox" id="toggle-all">
+            <input type="checkbox" class="toggle-all">
+            <label for="toggle-all"></label>
             <form class="todo-bar">
                 <input type="text" id="input-bar" placeholder="What needs to be done?">
             </form>
         </div>
-        <ul id="todo-list">
+        <ul id="todo-list" class="hidden">
             <template id="todo-template">
                 <li>
                     <input type="checkbox" class="toggle">
