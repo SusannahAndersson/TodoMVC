@@ -7,11 +7,15 @@ body {
     max-width: 550px;
     margin-left: auto;
     margin-right: auto;
+
+    background: grey;
 }
 
 header {
     grid-area: header;
     justify-self: center;
+
+    background: white;
 }
 
 main {
@@ -21,22 +25,75 @@ main {
     "search"
     "list"
     "status";
+
+    background: white;
 }
 
 main #todo-top{
     grid-area: search;
     display: grid;
-    grid-template-columns: 40px auto;
+    grid-template-columns: 50px auto;
+}
+
+main #todo-top [type="checkbox"]{
+    justify-self: center;
+}
+
+main #todo-top .todo-bar{
+    justify-self: stretch;
+}
+
+main #todo-top .todo-bar #input-bar{
+    position: relative;
+    width: 98%;
 }
 
 main #todo-list{
     grid-area: list;
+    list-style: none;
+    padding: 0%;
+}
+
+main #todo-list li{
+    display: grid;
+    grid-template-columns: 50px auto 50px;
+}
+
+main #todo-list li .toggle{
+    justify-self: center;
+}
+
+main #todo-list li .remove-button{
+    justify-self: center;
 }
 
 main #status-field{
     grid-area: status;
+    display: grid;
+    grid-template-columns: 20% 55% 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+main #status-field #filter-button{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0%;
+    justify-self: center;
+}
+
+main #status-field #filter-button li {
+    padding: 5px;
+    display: inline;
+}
+
+main #status-field #clear-completed{
+    justify-self: center;
+    align-self: center;
 }
 
 footer {
     grid-area: footer;
+    justify-self: center;
 }
