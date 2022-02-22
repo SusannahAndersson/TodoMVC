@@ -26,7 +26,8 @@ function setupInputBox() {
     form.onsubmit = event => {
         event.preventDefault();
         addTodoItem(inputText.value);
-        updateTaskCount();
+        updateButtonsAndStatus();
+        document.querySelector(".toggle-all").checked = false;
         inputText.value = "";
     };
 }
@@ -35,7 +36,7 @@ function setupToggleAll() {
     let checkBox = document.querySelector('.toggle-all');
     checkBox.onclick = () => {
         toggleAll(checkBox.checked);
-        updateTaskCount();
+        updateButtonsAndStatus();
     };
 }
 
@@ -43,7 +44,7 @@ function setupClearCompleted() {
     let button = document.querySelector('#clear-completed');
     button.onclick = () => {
         removeAllCompletedItems();
-        updateTaskCount();
+        updateButtonsAndStatus();
         document.querySelector('.toggle-all').checked = false;
     };
 }
@@ -51,42 +52,21 @@ function setupClearCompleted() {
 function setupShowAllButton() {
     let button = document.querySelector('#all');
     button.onclick = () => {
-        filterStatus = "all";
-        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
-        for (const li of liItems) {
-            setItemViewStatus(li);
-        }
-        button.classList.add("active");
-        document.querySelector('#active').classList.remove("active");
-        document.querySelector('#completed').classList.remove("active");
+        filterView("all");
     };
 }
 
 function setupShowActiveButton() {
     let button = document.querySelector('#active');
     button.onclick = () => {
-        filterStatus = "active";
-        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
-        for (const li of liItems) {
-            setItemViewStatus(li);
-        }
-        button.classList.add("active");
-        document.querySelector('#all').classList.remove("active");
-        document.querySelector('#completed').classList.remove("active");
+        filterView("active");
     };
 }
 
 function setupCompletedButton() {
     let button = document.querySelector('#completed');
     button.onclick = () => {
-        filterStatus = "completed";
-        let liItems = document.querySelector('#todo-list').querySelectorAll('li');
-        for (const li of liItems) {
-            setItemViewStatus(li);
-        }
-        button.classList.add("active");
-        document.querySelector('#all').classList.remove("active");
-        document.querySelector('#active').classList.remove("active");
+        filterView("completed");
     };
 }
 
@@ -147,7 +127,7 @@ function addTodoItem(text) {
             unfinishedTasks--;
         }
         li.remove();
-        updateTaskCount();
+        updateButtonsAndStatus();
     };
 
     li.addEventListener("mouseenter", function (event) {
@@ -159,7 +139,7 @@ function addTodoItem(text) {
 
     doneToggle.onclick = () => {
         toggleDone(li, doneToggle.checked);
-        updateTaskCount();
+        updateButtonsAndStatus();
     };
 
     setItemViewStatus(li);
@@ -167,9 +147,6 @@ function addTodoItem(text) {
     let ul = document.querySelector('#todo-list');
     ul.append(li);
     unfinishedTasks++;
-
-
-    document.querySelector(".toggle-all").checked = false;
 }
 
 function toggleAll(isChecked) {
@@ -199,7 +176,7 @@ function toggleDone(li, isChecked) {
 }
 
 
-function updateTaskCount() {
+function updateButtonsAndStatus() {
 
     let todolist = document.querySelector("#todo-list");
     let statusField = document.querySelector("#status-field");
@@ -221,5 +198,35 @@ function updateTaskCount() {
         statusField.classList.remove("hidden");
         todolist.classList.remove("hidden");
         unfinishedTaskSpan.textContent = unfinishedTasks;
+    }
+}
+
+function filterView(newStatus) {
+    filterStatus = newStatus;
+    let liItems = document.querySelector('#todo-list').querySelectorAll('li');
+    for (const li of liItems) {
+        setItemViewStatus(li);
+    }
+
+    let allButton = document.querySelector("#all");
+    let activeButton = document.querySelector("#active");
+    let completedButton = document.querySelector("#completed");
+
+    allButton.classList.remove("active");
+    activeButton.classList.remove("active");
+    completedButton.classList.remove("active");
+
+    switch (newStatus) {
+        case "all":
+            allButton.classList.add("active");
+            break;
+        case "active":
+            activeButton.classList.add("active");
+            break;
+        case "completed":
+            completedButton.classList.add("active");
+            break;
+        default:
+            break;
     }
 }
