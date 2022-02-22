@@ -1,4 +1,4 @@
-Inlämningsuppgift 3: TodoMVC
+<h1>Inlämningsuppgift 3: TodoMVC</h1>
 Skriv er egen version av den kända exempelappen TodoMVC med HTML, CSS och JavaScript.
 
 Funktionalitet
