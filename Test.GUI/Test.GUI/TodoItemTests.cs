@@ -7,8 +7,8 @@ namespace Test.GUI
 {
     public class TodoItemsTests
     {
-        ChromeDriver _browser = null;
-        string _url = null;
+        private ChromeDriver _browser = null;
+        private string _url = null;
 
         [SetUp]
         public void Setup()
@@ -19,8 +19,8 @@ namespace Test.GUI
             // Niklas laptop
             _url = @"file:///C:/Git/Teknikh%C3%B6gskolan/Frontend/Gruppuppgift%203%20-%20Todolist/TodoMVC/TodoMVC/index.html?";
 
-            // Sussannahs computer
-            //_url = @"";
+            //Susannahs computer
+            //_url = @"http://localhost:62680/index.html";
         }
 
         [TearDown]
@@ -95,6 +95,5 @@ namespace Test.GUI
 
             Assert.AreEqual(expected, count);
         }
-
     }
 }

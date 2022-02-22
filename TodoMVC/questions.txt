@@ -1,1 +1,0 @@
-1. Måste vi använda en knapp för filter eller fungerar det med en checkbox likt de andra delarna i listan?
