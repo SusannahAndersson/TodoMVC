@@ -217,4 +217,30 @@ footer {
     grid-area: footer;
     justify-self: center;
 }
+
+footer .info {
+    margin-top: 25px;
+    color: #bfbfbf;
+    font: 10px Helvetica Neue, cursive;
+}
+
+footer a {
+    color: #bfbfbf;
+}
+
+footer a:link {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer a:visited {
+    text-decoration: none;
+}
+
+footer a:active {
+    text-decoration: underline;
+}
 /*#endregion footer*/
