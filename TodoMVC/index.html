@@ -6,7 +6,7 @@
     <meta name="keywords" content="TodoMVC - online todos list">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TodoMVC</title>
-    <link rel="stylesheet" href="StyleSheet.css" />
+    <link rel="stylesheet" href="StyleSheet.css"/>
     <script src="JavaScript.js" defer></script>
 </head>
 <body>
@@ -15,16 +15,17 @@
     </header>
     <main>
         <div id="todo-top">
-            <input type="checkbox" id="toggle-all">
+            <input type="checkbox" class="toggle-all">
+            <label></label>
             <form class="todo-bar">
                 <input type="text" id="input-bar" placeholder="What needs to be done?">
             </form>
         </div>
-        <ul id="todo-list">
+        <ul id="todo-list" class="hidden">
             <template id="todo-template">
                 <li>
                     <input type="checkbox" class="toggle">
-                    <label for="toggle" class="todo-text">Text</label>
+                    <label class="todo-text">skriver lite text för test</label>
                     <button class="remove-button hidden">❌</button>
                 </li>
             </template>
