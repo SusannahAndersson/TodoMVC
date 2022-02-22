@@ -48,7 +48,7 @@
     <li>Denna uppgift har ingenting med designmönstret MVC (Model-View-Controller) att göra, trots namnet TodoMVC. Ni behöver inte och bör inte implementera detta designmönster i er lösning. (Med andra ord: glömt helt bort begreppet MVC i det här sammanhanget.)</li>
     <li>Skriv all er HTML, CSS och JavaScript själva, utan ramverk och bibliotek.</li>
     <li>I övrigt gäller samma generella riktlinjer som tidigare kring exempelvis kodformatering och semantisk HTML.</li>
-<ul>
+</ul>
 <h2>Samarbete</h2>
 <p>Denna inlämningsuppgift ska utföras och lämnas in i par.</p>
 
