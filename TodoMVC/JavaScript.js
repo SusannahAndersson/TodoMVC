@@ -113,7 +113,7 @@ function addTodoItem(text) {
     if (!text) { return; }
 
     let li = template.content.firstElementChild.cloneNode(true);
-    
+
     let label = li.querySelector('.todo-text');
     label.textContent = text;
 
@@ -143,7 +143,7 @@ function addTodoItem(text) {
     };
 
     setItemViewStatus(li);
-    
+
     let ul = document.querySelector('#todo-list');
     ul.append(li);
     unfinishedTasks++;
